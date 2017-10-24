@@ -1,9 +1,13 @@
 class ArtworksController < ApplicationController
   def index
-    @artwork = Artwork.find(params[:artist_id])
-    @shared_artwork = ArtworkShare.find(params[:viewer_id])
+    # @artwork = User.find_by(id: params[:user_id]).artworks
+    # @shared_artwork = User.find_by(id: params[:viewer_id]).artworks
 
-    render json: @artwork
+    if @artwork
+      render json: @artwork
+    else
+      render json: Artwork.all
+    end
     # render json: @shared_artwork
   end
 
